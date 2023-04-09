@@ -6,7 +6,7 @@
 /*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:04:22 by rozeki            #+#    #+#             */
-/*   Updated: 2023/03/30 16:14:21 by rozeki           ###   ########.fr       */
+/*   Updated: 2023/04/09 16:20:33 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "get_next_line.h"
 
-int	get_line_len(char *storage)
+int	get_line_size(char *storage)
 {
 	int	i;
 
@@ -48,24 +48,24 @@ char	*read_stock(char *storage, int fd, int *end)
 	return (new);
 }
 
-char	*get_line_and_update(char **storage, int len)
+char	*get_line_and_update(char **storage, int size)
 {
 	char	*line;
 	char	*temp;
 	int		i;
 
-	line = malloc(sizeof(char) * (len + 1));
+	line = malloc(sizeof(char) * (size + 1));
 	if (line == NULL)
 		return (memoryfree(storage));
 	i = 0;
-	while (i < len)
+	while (i < size)
 	{
 		line[i] = (*storage)[i];
 		i++;
 	}
-	line[len] = '\0';
+	line[size] = '\0';
 	temp = *storage;
-	*storage = ft_strdup(&temp[len]);
+	*storage = ft_strdup(&temp[size]);
 	memoryfree(&temp);
 	if (*storage == NULL)
 		return (NULL);
@@ -85,24 +85,24 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*storage;
-	int			len;
+	int			size;
 	int			end[1];
 
 	if (fd < 0)
 		return (NULL);
-	len = get_line_len(storage);
+	size = get_size(storage);
 	*end = 1;
-	while (len == 0 && *end != 0)
+	while (size == 0 && *end != 0)
 	{
 		storage = read_stock(storage, fd, end);
 		if (storage == NULL)
 			return (memoryfree(&storage));
-		len = get_line_len(storage);
+		size = get_size(storage);
 	}
 	line = NULL;
-	if (len != 0)
-		line = get_line_and_update(&storage, len);
-	else if (ft_strlen(storage) != 0)
+	if (size != 0)
+		line = get_line_and_update(&storage, size);
+	else if (ft_strsize(storage) != 0)
 		line = get_endline(&storage);
 	if (line == NULL)
 		memoryfree(&storage);

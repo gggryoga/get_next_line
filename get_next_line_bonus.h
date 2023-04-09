@@ -6,7 +6,7 @@
 /*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:54:58 by rozeki            #+#    #+#             */
-/*   Updated: 2023/03/30 16:54:59 by rozeki           ###   ########.fr       */
+/*   Updated: 2023/03/30 17:07:41 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE
+# define BUFFER_SIZE 42
 #endif
 
 char	*get_next_line(int fd);

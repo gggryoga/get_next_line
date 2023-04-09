@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bounus.c                             :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:52:51 by rozeki            #+#    #+#             */
-/*   Updated: 2023/03/30 16:52:52 by rozeki           ###   ########.fr       */
+/*   Updated: 2023/04/09 16:18:07 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	get_line_len(char *storage)
+int	get_size(char *storage)
 {
 	int	i;
 
@@ -83,23 +83,23 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	static char	*storage[1024];
-	int			len;
+	int			size;
 	int			end[1];
 
 	if (fd < 0 || fd > 1024)
 		return (NULL);
-	len = get_line_len(storage[fd]);
+	size = get_size(storage[fd]);
 	*end = 1;
-	while (len == 0 && *end != 0)
+	while (size == 0 && *end != 0)
 	{
 		storage[fd] = read_stock(storage[fd], fd, end);
 		if (storage[fd] == NULL)
 			return (memoryfree(&storage[fd]));
-		len = get_line_len(storage[fd]);
+		size = get_size(storage[fd]);
 	}
 	line = NULL;
-	if (len != 0)
-		line = get_line_and_update(&storage[fd], len);
+	if (size != 0)
+		line = get_line_and_update(&storage[fd], size);
 	else if (ft_strlen(storage[fd]) != 0)
 		line = get_endline(&storage[fd]);
 	if (line == NULL)
