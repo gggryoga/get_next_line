@@ -6,7 +6,7 @@
 /*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:52:51 by rozeki            #+#    #+#             */
-/*   Updated: 2023/04/09 16:18:07 by rozeki           ###   ########.fr       */
+/*   Updated: 2023/04/13 15:40:29 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,28 +108,28 @@ char	*get_next_line(int fd)
 }
 
 
-#include <stdio.h>
-#include <fcntl.h>
-int main(void)
-{
-	int fd;
-	int fd2;
-	char *str;
-	fd = open("./test", O_RDONLY);
-	fd2 = open("./test2", O_RDONLY);
-	str = get_next_line(fd);
-	while (str != NULL)
-	{
-		printf("%s", str);
-		str = get_next_line(fd);
-	}
-	printf("\n");
-	str = get_next_line(fd2);
-	while (str != NULL)
-	{
-		printf("%s", str);
-		str = get_next_line(fd2);
-	}
+// #include <stdio.h>
+// #include <fcntl.h>
+// int main(void)
+// {
+// 	int fd;
+// 	int fd2;
+// 	char *str;
+// 	fd = open("./test", O_RDONLY);
+// 	fd2 = open("./test2", O_RDONLY);
+// 	str = get_next_line(fd);
+// 	while (str != NULL)
+// 	{
+// 		printf("%s", str);
+// 		str = get_next_line(fd);
+// 	}
+// 	printf("\n");
+// 	str = get_next_line(fd2);
+// 	while (str != NULL)
+// 	{
+// 		printf("%s", str);
+// 		str = get_next_line(fd2);
+// 	}
 
-	return (0);
-}
+// 	return (0);
+// }

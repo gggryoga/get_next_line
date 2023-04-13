@@ -6,15 +6,13 @@
 /*   By: rozeki <rozeki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:04:22 by rozeki            #+#    #+#             */
-/*   Updated: 2023/04/09 16:20:33 by rozeki           ###   ########.fr       */
+/*   Updated: 2023/04/13 15:40:18 by rozeki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include "get_next_line.h"
-
-int	get_line_size(char *storage)
+int	get_size(char *storage)
 {
 	int	i;
 
@@ -102,25 +100,25 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (size != 0)
 		line = get_line_and_update(&storage, size);
-	else if (ft_strsize(storage) != 0)
+	else if (ft_strlen(storage) != 0)
 		line = get_endline(&storage);
 	if (line == NULL)
 		memoryfree(&storage);
 	return (line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
-int main(void)
-{
-	int fd;
-	char *str;
-	fd = open("./test", O_RDONLY);
-	str = get_next_line(fd);
-	while (str != NULL)
-	{
-		printf("%s", str);
-		str = get_next_line(fd);
-	}
-	return (0);
-}
+// #include <stdio.h>
+// #include <fcntl.h>
+// int main(void)
+// {
+// 	int fd;
+// 	char *str;
+// 	fd = open("./test", O_RDONLY);
+// 	str = get_next_line(fd);
+// 	while (str != NULL)
+// 	{
+// 		printf("%s", str);
+// 		str = get_next_line(fd);
+// 	}
+// 	return (0);
+// }
